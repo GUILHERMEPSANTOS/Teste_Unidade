@@ -14,4 +14,21 @@ public class CalculadoraTests
         //Assert
         Assert.Equal(4, resultado);
     }
+
+    [Theory]
+    [InlineData(2,2,4)]
+    [InlineData(2,3,5)]
+    [InlineData(2,4,6)]
+    [InlineData(2,5,7)]
+    public void Calculadora_Somar_RetornarValorSomaCorretos(double primeiroNumero, double segundoNumero, double total)
+    {
+        //Arrange
+        var calculadora = new Calculadora();
+
+        //Act
+        var resultado = calculadora.Somar(primeiroNumero, segundoNumero);
+
+        //Assert
+        Assert.Equal(total, resultado);
+    }
 }
