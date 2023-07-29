@@ -2,7 +2,7 @@
 
 namespace Features.Tests.Fixture
 {
-    [Collection(nameof(ClienteCollection))]
+    [Collection(nameof(ClienteCollectionremoção))]
     public class ClienteTestsInvalido
     {
         private readonly ClienteTestsFixture _clienteTestsFixture;
