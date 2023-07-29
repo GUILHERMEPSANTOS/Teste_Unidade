@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+using FluentValidation.Results;
 
 namespace Features.Core
 {
@@ -11,6 +11,7 @@ namespace Features.Core
         protected Entity()
         {
             Id = Guid.NewGuid();
+            ValidationResult = new ValidationResult();
         }
 
         public virtual bool EhValido()

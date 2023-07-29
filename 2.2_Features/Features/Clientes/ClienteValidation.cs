@@ -12,7 +12,7 @@ namespace Features.Clientes
                 .Length(2, 150)
                 .WithMessage("O Nome deve ter entre 2 e 150 caracteres");
 
-            RuleFor(cliente => cliente.Nome)
+            RuleFor(cliente => cliente.Sobrenome)
                .NotEmpty()
                .WithMessage("Nome não pode ser vazio")
                .Length(2, 150)
@@ -32,7 +32,7 @@ namespace Features.Clientes
 
         public bool HaveMinimumAge(DateTime nascimento)
         {
-            return nascimento >= DateTime.UtcNow.AddYears(-18);
+            return nascimento <= DateTime.UtcNow.AddYears(-18);
         }
     }
 }

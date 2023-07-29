@@ -43,9 +43,9 @@ namespace Features.Clientes
 
         public override bool EhValido()
         {
-            var validation = new ClienteValidation().Validate(this);
+            ValidationResult = new ClienteValidation().Validate(this);
 
-            return validation.IsValid;
+            return ValidationResult.IsValid;
         }
     }
 }
