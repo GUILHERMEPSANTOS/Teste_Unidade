@@ -17,7 +17,7 @@ namespace Features.Tests.Fixture
         public void Cliente_NovoCliente_DeveSerInvalido()
         {
             //Arrange
-            var cliente = _clienteTestsFixture.GerarClienteInvlaido();
+            var cliente = _clienteTestsFixture.GerarClienteInvalido();
 
             //Act
             var isValid = cliente.EhValido();

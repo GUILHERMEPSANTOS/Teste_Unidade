@@ -16,7 +16,7 @@ namespace Features.Tests.Fixture
                );
         }
 
-        public Cliente GerarClienteInvlaido()
+        public Cliente GerarClienteInvalido()
         {
             return new Cliente(
                 nome: "",
