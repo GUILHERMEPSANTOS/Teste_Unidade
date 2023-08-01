@@ -12,7 +12,7 @@ namespace Features.Tests.Fixture
             _clienteTestsFixture = clienteTestsFixture;
         }
 
-        [Fact(DisplayName = "Novo Cliente Inálido")]
+        [Fact(DisplayName = "Novo Cliente Inválido")]
         [Trait("Categoria", "Cliente Fixture Testes")]
         public void Cliente_NovoCliente_DeveSerInvalido()
         {
