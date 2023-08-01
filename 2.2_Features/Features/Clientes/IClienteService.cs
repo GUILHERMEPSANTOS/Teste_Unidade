@@ -1,6 +1,6 @@
 ﻿namespace Features.Clientes
 {
-    internal interface IClienteService : IDisposable
+    public interface IClienteService : IDisposable
     {
         IEnumerable<Cliente> ObterTodosAtivos();
         void Adicionar(Cliente cliente);

@@ -3,7 +3,7 @@
 namespace Features.Core
 {
 
-    internal interface IRepository<TClass> : IDisposable where TClass : Entity
+    public interface IRepository<TClass> : IDisposable where TClass : Entity
     {
         void Adicionar(TClass cliente);
         void Atualizar(TClass cliente);

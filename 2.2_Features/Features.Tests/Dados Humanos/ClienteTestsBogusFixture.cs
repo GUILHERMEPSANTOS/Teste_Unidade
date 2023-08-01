@@ -25,7 +25,7 @@ namespace Features.Tests.Dados_Humanos
             return clienteFaker;
         }
 
-        public Cliente GerarClienteInvlaido()
+        public Cliente GerarClienteInvalido()
         {
             var genero = new Faker().PickRandom<Gender>();
 
