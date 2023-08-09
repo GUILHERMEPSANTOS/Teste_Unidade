@@ -7,23 +7,7 @@ namespace Features.Tests.Dados_Humanos
 {
     public class ClienteTestsBogusFixture : IDisposable
     {
-        public Cliente GerarClienteValido()
-        {
-            var genero = new Faker().PickRandom<Gender>();
-
-            var clienteFaker = new Faker<Cliente>("pt_BR")
-                .CustomInstantiator(faker => new Cliente(
-                        nome: faker.Name.FirstName(genero),
-                        sobrenome: faker.Name.LastName(genero),
-                        email: "",
-                        dataNascimento: faker.Date.Past(80, DateTime.UtcNow.AddYears(-18)),
-                        dataCadastro: faker.Date.Past(3),
-                        true
-                  )).RuleFor(cliente => cliente.Email,
-                            (faker, cliente) => faker.Internet.Email(cliente.Nome.ToLower(), cliente.Sobrenome.ToLower()));
-
-            return clienteFaker;
-        }
+        public Cliente GerarClienteValido() => GerarListaDeClienteValidos(1, true).FirstOrDefault();
 
         public Cliente GerarClienteInvalido()
         {
@@ -41,6 +25,36 @@ namespace Features.Tests.Dados_Humanos
 
             return clienteFaker;
         }
+
+        public IEnumerable<Cliente> GerarClientesVariados()
+        {
+            var clientes = new List<Cliente>();
+
+            clientes.AddRange(GerarListaDeClienteValidos(50, true));
+            clientes.AddRange(GerarListaDeClienteValidos(50, false));
+
+            return clientes;
+        }
+
+        public IEnumerable<Cliente> GerarListaDeClienteValidos(int quantidade, bool ativo)
+        {
+            var genero = new Faker().PickRandom<Gender>();
+
+            var clientesFaker = new Faker<Cliente>("pt_BR")
+               .CustomInstantiator(faker => new Cliente(
+                       nome: faker.Name.FirstName(genero),
+                       sobrenome: faker.Name.LastName(genero),
+                       email: "",
+                       dataNascimento: faker.Date.Past(80, DateTime.UtcNow.AddYears(-18)),
+                       dataCadastro: faker.Date.Past(3),
+                       ativo: ativo
+                 )).RuleFor(cliente => cliente.Email,
+                           (faker, cliente) => faker.Internet.Email(cliente.Nome.ToLower(), cliente.Sobrenome.ToLower()));
+
+            return clientesFaker.Generate(quantidade);
+        }
+
+
 
         public void Dispose()
         {
