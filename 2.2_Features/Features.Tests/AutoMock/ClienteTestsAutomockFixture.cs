@@ -1,12 +1,14 @@
-﻿
-using Bogus;
+﻿using Bogus;
 using Features.Clientes;
+using Moq.AutoMock;
 using static Bogus.DataSets.Name;
 
-namespace Features.Tests.Dados_Humanos
+namespace Features.Tests.AutoMock
 {
-    public class ClienteTestsBogusFixture : IDisposable
+    public class ClienteTestsAutomockFixture
     {
+        public AutoMocker Mocker;
+        public ClienteService clienteService;
         public Cliente GerarClienteValido() => GerarListaDeClienteValidos(1, true).FirstOrDefault();
 
         public Cliente GerarClienteInvalido()
@@ -54,9 +56,17 @@ namespace Features.Tests.Dados_Humanos
             return clientesFaker.Generate(quantidade);
         }
 
+        public ClienteService ObterClienteService()
+        {
+            Mocker = new AutoMocker();
+
+            return Mocker.CreateInstance<ClienteService>();
+        }
+
         public void Dispose()
         {
 
         }
     }
+
 }
