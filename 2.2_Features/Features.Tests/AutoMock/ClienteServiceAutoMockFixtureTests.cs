@@ -1,5 +1,6 @@
 ﻿using Features.Clientes;
 using Features.Tests.Dados_Humanos;
+using FluentAssertions;
 using MediatR;
 using Moq;
 using Moq.AutoMock;
@@ -46,7 +47,7 @@ namespace Features.Tests.AutoMock
             _clienteService.Adicionar(cliente);
 
 
-            Assert.False(cliente.EhValido());
+            cliente.EhValido().Should().BeFalse("possui inconsistencias");
             mocker.GetMock<IClienteRepository>().Verify(clienteRepo => clienteRepo.Adicionar(cliente), Times.Never);
             mocker.GetMock<IMediator>().Verify(mediator => mediator.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Never);
         }
@@ -65,8 +66,8 @@ namespace Features.Tests.AutoMock
             var clientes = _clienteService.ObterTodosAtivos();
 
             mocker.GetMock<IClienteRepository>().Verify(repository => repository.ObterTodos(), Times.Once);
-            Assert.True(clientes.Any());
-            Assert.True(clientes.Count(cliente => !cliente.Ativo) == 0);
+            clientes.Should().HaveCountGreaterThanOrEqualTo(1).And.OnlyHaveUniqueItems();
+            clientes.Should().NotContain(cliente => !cliente.Ativo);
         }
     }
 }
