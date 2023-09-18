@@ -3,6 +3,8 @@ using Features.Tests.Dados_Humanos;
 using MediatR;
 using Moq;
 using Moq.AutoMock;
+using System.CodeDom.Compiler;
+using Xunit.Abstractions;
 
 namespace Features.Tests.AutoMock
 {
@@ -10,7 +12,7 @@ namespace Features.Tests.AutoMock
     public class ClienteServiceAutoMockTests
     {
         private readonly ClienteTestsBogusFixture _clienteTestsBogusFixture;
-       
+     
         public ClienteServiceAutoMockTests(ClienteTestsBogusFixture clienteTestsBogusFixture)
         {
             _clienteTestsBogusFixture = clienteTestsBogusFixture;
